@@ -1,9 +1,8 @@
 <nav class="navbar">
-  <div class="links">
-    <a>Home</a>
-    <a>About</a>
-    <a>Projects</a>
+  <div class="links" [class.open]="menuOpen">
+    <a href="#top" (click)="closeMenu()">Home</a>
+    <a href="#about" (click)="closeMenu()">About</a>
+    <a href="#projects" (click)="closeMenu()">Projects</a>
   </div>
-
-  <div class="burger">☰</div>
+  <div class="burger" (click)="toggleMenu()">☰</div>
 </nav>

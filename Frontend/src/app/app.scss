@@ -1,18 +1,20 @@
-.title-card {
-  font-size: 4rem;
-  animation: textRise 1.4s ease forwards;
-}
-.description-card {
-  font-size: 1.5rem;
-  animation: textRise 1.8s ease forwards;
+// ─── Reset ───────────────────────────────────────────────────────────
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.luxury-bg {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  transition: background 1.5s ease;
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+  scroll-behavior: smooth;
 }
+
+// ─── Layout ──────────────────────────────────────────────────────────
+
 .page-content {
   position: relative;
   padding-top: 100px;
@@ -21,35 +23,332 @@
   flex-direction: column;
   align-items: center;
 }
+
+section {
+  min-height: 80vh;
+  padding: 6rem clamp(1rem, 4vw, 2rem);
+  scroll-margin-top: 100px;
+}
+
+// ─── Hero ────────────────────────────────────────────────────────────
+
 .hero {
-  min-height: 100vh;
+  min-height: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.title-card {
+  font-size: clamp(2rem, 5vw, 4rem);
+  animation: textRise 1.4s ease forwards;
+}
+
+.description-card {
+  font-size: clamp(0.9rem, 2vw, 1.5rem);
+  animation: textRise 1.8s ease forwards;
+}
+
+// ─── Backgrounds ─────────────────────────────────────────────────────
+
+.luxury-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  transition: background 1.5s ease;
+}
+
+.bg1 {
+  background: linear-gradient(
+    135deg,
+    hsla(352, 58%, 15%, 1) 0%,
+    hsla(37, 69%, 10%, 1) 52%,
+    hsla(238, 73%, 7%, 1) 100%
+  );
+}
+
+.bg2 {
+  background: linear-gradient(
+    135deg,
+    hsla(324, 31%, 21%, 1) 0%,
+    hsla(15, 40%, 15%, 1) 52%,
+    hsla(208, 88%, 14%, 1) 100%
+  );
+}
+
+.bg3 {
+  background: linear-gradient(
+    135deg,
+    hsla(323, 41%, 23%, 1) 1%,
+    hsla(15, 36%, 21%, 1) 43%,
+    hsla(208, 80%, 21%, 1) 100%
+  );
+}
+
+.bg4 {
+  background: linear-gradient(
+    180deg,
+    hsla(323, 41%, 11%, 1) 1%,
+    hsla(15, 52%, 15%, 1) 43%,
+    hsla(297, 69%, 20%, 1) 90%
+  );
+}
+
+// ─── Marquee ─────────────────────────────────────────────────────────
+
+.marquee {
+  overflow: hidden;
+  padding: 2rem 0;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 20s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+// ─── Project Cards ───────────────────────────────────────────────────
+
+.marquee-card {
   position: relative;
-}
+  cursor: pointer;
+  height: clamp(200px, 20vw, 300px);
+  width: clamp(250px, 22vw, 350px);
+  margin: 0 1rem;
+  padding: 2.5rem;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+  overflow: hidden;
+  transition:
+    border-color 0.6s ease,
+    transform 0.6s ease,
+    padding 0.6s ease;
 
-section {
-  position: relative;
-  min-height: 80vh;
-  padding: 6rem 2rem;
-}
-
-.dev-extender {
-  height: 2400px;
-  background: green;
-}
-
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    margin-bottom: 0.5rem;
+    color: rgba(191, 155, 48, 0.9);
   }
-  50% {
-    background-position: 100% 50%;
+
+  p {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.8rem, 1vw, 1rem);
+    font-weight: 300;
+    color: white;
+  }
+
+  small {
+    color: #ffebbf;
+    position: relative;
+    z-index: 1;
+    font-size: 1.2rem;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1.5px solid rgba(191, 155, 48, 0.2);
+    background: rgba(0, 0, 0, 0.3);
+    transition: background 0.6s ease;
+    border-radius: inherit;
+  }
+
+  h3,
+  p {
+    position: relative;
+    z-index: 1;
+  }
+
+  &:hover {
+    border-color: transparent;
+    transform: scale(1.05);
+    padding: 3rem;
+  }
+
+  &:hover::before {
+    background: rgba(0, 0, 0, 0.85);
+  }
+}
+
+// ─── Project Board ───────────────────────────────────────────────────
+
+.project-board {
+  width: auto;
+  height: 100%;
+  padding: 2rem;
+  mask-image: linear-gradient(to right, black 0%, black 80%, transparent);
+  -webkit-mask-image: linear-gradient(to right, black 0%, black 80%, transparent);
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: white;
+  border-radius: 12px;
+
+  .description {
+    width: 60%;
+    height: 100%;
+    margin-bottom: 0rem;
+  }
+
+  .date {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    color: rgba(191, 155, 48, 0.95);
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.5px;
+  }
+
+  .header {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: bolder;
+    margin-bottom: 0.5rem;
+    color: rgba(191, 155, 48, 0.9);
+  }
+
+  .linkcard {
+    cursor: pointer;
+    text-decoration: none;
+    width: 70%;
+    height: auto;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.25rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 14px;
+    border: 1px solid rgba(191, 155, 48, 0.15);
+    backdrop-filter: blur(6px);
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+
+    &:hover {
+      transform: translateY(-4px);
+      border: 1px solid rgba(191, 155, 48, 0.35);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+    }
+
+    .title {
+      font-size: 1.6rem;
+      margin-bottom: 0.25rem;
+      color: rgba(191, 155, 48, 0.95);
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 0.5px;
+    }
+
+    .link {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.75);
+      text-decoration: none;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 0%;
+        height: 1px;
+        background: rgba(191, 155, 48, 0.7);
+        transition: width 0.3s ease;
+      }
+
+      &:hover::after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// ─── About ───────────────────────────────────────────────────────────
+
+#about h2 {
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  opacity: 0.4;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+#about p {
+  color: white;
+}
+
+// ─── Contact ─────────────────────────────────────────────────────────
+
+#contact {
+  min-height: auto;
+  padding-bottom: 4rem;
+}
+
+.contact-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  max-width: 500px;
+}
+
+.contact-item {
+  margin-top: 0.2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 2rem;
+  border: 1px solid rgba(191, 155, 48, 0.15);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.02);
+  text-decoration: none;
+  transition:
+    border-color 0.6s ease,
+    background 0.6s ease;
+
+  .contact-label {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(191, 155, 48, 0.5);
+    font-weight: bolder;
+    min-width: 80px;
+  }
+
+  .contact-value {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  &:hover {
+    border-color: rgba(191, 155, 48, 0.5);
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
+
+// ─── Animations ──────────────────────────────────────────────────────
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
   }
   100% {
-    background-position: 0% 50%;
+    transform: translateX(-50%);
   }
 }
 
@@ -59,7 +358,7 @@ section {
     color: rgba(255, 255, 255, 0);
   }
   100% {
-    margin-top: 0rem;
+    margin-top: 0;
     color: rgba(255, 255, 255, 1);
   }
 }

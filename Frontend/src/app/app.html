@@ -1,13 +1,85 @@
 <app-navbar></app-navbar>
-<div class="luxury-bg" [style.background]="bgColor"></div>
+<div class="luxury-bg bg1" [style.opacity]="bg1Opacity"></div>
+<div class="luxury-bg bg2" [style.opacity]="bg2Opacity"></div>
+<div class="luxury-bg bg3" [style.opacity]="bg3Opacity"></div>
+<div class="luxury-bg bg4" [style.opacity]="bg4Opacity"></div>
 
 <section class="hero">
   <div class="title-card">{{ header }}</div>
   <div class="description-card">{{ description }}</div>
 </section>
 
-<section id="projects"></section>
+<section id="projects" class="noBottom">
+  <div class="title-card">My Projects</div>
+  <div class="marquee">
+    <div class="marquee-track">
+      @for (p of projects; track $index) {
+        <div class="marquee-card" button (click)="focusProject(p)">
+          <h3>{{ p.title }}</h3>
+          <p>{{ p.description }}</p>
+          <small>{{ timeSince(p.dated) }}</small>
+        </div>
+      }
+    </div>
+  </div>
+  @if (isCardFocused) {
+    <div class="project-board">
+      <div class="header">{{ this.focusedCardTitle }}</div>
+      <div class="description">{{ this.focusedCardDescription }}</div>
+      <div class="date">{{ this.focusedCardTimestamp }}</div>
+      @for (l of this.focusedCardLinks; track $index) {
+        <a href="{{ l.url }}" target="_blank" rel="noopener noreferrer" class="linkcard">
+          <div class="title">{{ l.title }}</div>
+          <div class="link">{{ l.url }}</div>
+        </a>
+      }
+    </div>
+  }
+</section>
 
-<section id="about"></section>
+<section id="about">
+  <div class="title-card">About Me</div>
+  <h2>Software Development</h2>
+  <p>
+    I build full-stack web applications with .NET and Angular. My latest project is a deployed
+    ecommerce platform on Azure with JWT auth, real-time cart management, and a CI/CD pipeline.
+  </p>
+  <p>
+    I care about code that's easy to change when requirements shift and interfaces that respect the
+    user's time. Every project I ship has a live demo, a real README, and deployment you can
+    actually visit.
+  </p>
+  <h2>History</h2>
+  <p>
+    Before web development, I shipped a multiplayer game on Steam built with C# and Unity, and
+    created Minecraft maps for Mojang.
+  </p>
+  <p>I've been writing C# for over a decade. I just point it at different problems now.</p>
+  <h2>Beyond Code</h2>
+  <p>
+    When I'm not coding, I'm usually with family - beach trips, charter fishing, or driving my
+    little brother wherever he needs to go. Otherwise I'm working on projects with my friends.
+  </p>
+</section>
 
-<section id="contact"></section>
+<section id="contact">
+  <div class="title-card">Contact Me</div>
+  <div class="contact-grid">
+    <div class="contact-item">
+      <span class="contact-label">Email</span>
+      <span class="contact-value">JuddLasater.Dev@gmail.com</span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-label">Phone</span>
+      <span class="contact-value">(806) 777-5004</span>
+    </div>
+    <a href="www.linkedin.com/in/judd-lasater-54a29a38a/" target="_blank" class="contact-item">
+      <span class="contact-label">LinkedIn</span>
+      <span class="contact-value">Judd Lasater</span>
+    </a>
+    <a href="https://github.com/juddl44" target="_blank" class="contact-item">
+      <span class="contact-label">GitHub</span>
+      <span class="contact-value">JuddL44</span>
+    </a>
+  </div>
+</section>
