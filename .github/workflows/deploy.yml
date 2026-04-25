@@ -22,7 +22,7 @@ jobs:
 
       - name: Build
         working-directory: Frontend
-        run: npm run build -- --configuration production --no-ssr --base-href /
+        run: npm run build -- --configuration production --no-ssr --base-href /portfolio/
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
