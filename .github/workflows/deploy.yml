@@ -17,13 +17,15 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
+        working-directory: frontend
         run: npm install
 
       - name: Build
-        run: npm run build -- --base-href /
+        working-directory: frontend
+        run: npm run build -- --configuration production --no-ssr --base-href /
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/your-app-name
+          publish_dir: ./frontend/dist/Frontend/browser
