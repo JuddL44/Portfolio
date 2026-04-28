@@ -299,7 +299,8 @@ section {
 
 .contact-grid {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  gap: 2px;
   gap: 1rem;
   max-width: 500px;
 }
@@ -307,6 +308,7 @@ section {
 .contact-item {
   margin-top: 0.2rem;
   display: flex;
+  width: fit-content;
   flex-direction: row;
   align-items: center;
   gap: 1.5rem;
@@ -330,14 +332,20 @@ section {
   }
 
   .contact-value {
-    font-family: 'Raleway', sans-serif;
-    font-size: 1.1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: auto;
     color: rgba(255, 255, 255, 0.85);
   }
 
   &:hover {
     border-color: rgba(191, 155, 48, 0.5);
     background: rgba(255, 255, 255, 0.05);
+  }
+}
+
+@media (min-width: 768px) {
+  .contact-grid {
+    flex-direction: row;
   }
 }
 
