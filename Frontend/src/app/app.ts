@@ -30,6 +30,7 @@ export class App implements OnInit, OnDestroy {
   focusedCardTitle: string = '';
   focusedCardDescription: string = '';
   focusedCardTimestamp: string = '';
+  focusedCardImg: string = '';
   focusedCardLinks: Link[] = [];
   isCardFocused = false;
 
@@ -40,6 +41,7 @@ export class App implements OnInit, OnDestroy {
       title: 'Judd Fashion',
       description: 'Full-stack ecommerce platform with JWT auth and real-time cart management',
       dated: new Date('2026-04-10'),
+      imgPath: 'images/project_jf.png',
       links: [
         {
           title: 'Deployed Front End',
@@ -55,6 +57,7 @@ export class App implements OnInit, OnDestroy {
       title: "Cauldron's Rift",
       description: 'Designed, developed, and deployed a steam game from concept to production',
       dated: new Date('2024-04-25'),
+      imgPath: 'images/project_cauldron.png',
       links: [
         {
           title: 'Steam Page',
@@ -71,6 +74,7 @@ export class App implements OnInit, OnDestroy {
       description:
         'One of the creators chosen by Mojang to design, develop, and publish custom maps featured on Minecraft Realms (Java Edition)',
       dated: new Date('2020-01-13'),
+      imgPath: 'images/project_realms.png',
       links: [
         {
           title: 'First Mojang Blog Post',
@@ -94,6 +98,7 @@ export class App implements OnInit, OnDestroy {
       title: 'Portfolio Site',
       description: "You're looking at it, this portfolio was built from scratch using Angular.",
       dated: new Date('2026-04-17'),
+      imgPath: 'images/project_portfolio.png',
       links: [],
     },
   ];
@@ -134,6 +139,7 @@ export class App implements OnInit, OnDestroy {
       this.focusedCardDescription = card.description;
       this.focusedCardTimestamp = this.timeSince(card.dated);
       this.focusedCardLinks = card.links;
+      this.focusedCardImg = card.imgPath;
       this.isCardFocused = true;
     }
   }

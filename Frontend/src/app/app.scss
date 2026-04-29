@@ -50,6 +50,41 @@ section {
   animation: textRise 1.8s ease forwards;
 }
 
+// ─── Icons ─────────────────────────────────────────────────────
+
+.icon-container {
+  width: auto;
+  height: auto;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5vw;
+}
+
+.icon {
+  width: 6vw;
+  height: 6vw;
+  transition: transform 0.6s ease;
+  animation: iconRise 1.7s ease forwards;
+  &:hover {
+    transform: scale(1.25);
+  }
+}
+
+.icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: auto;
+}
+
+@media (min-width: 768px) {
+  .icon-container {
+    flex-direction: row;
+  }
+}
+
 // ─── Backgrounds ─────────────────────────────────────────────────────
 
 .luxury-bg {
@@ -153,7 +188,7 @@ section {
     color: #ffebbf;
     position: relative;
     z-index: 1;
-    font-size: 1.2rem;
+    font-size: 0.8rem;
   }
 
   &::before {
@@ -161,15 +196,17 @@ section {
     position: absolute;
     inset: 0;
     border: 1.5px solid rgba(191, 155, 48, 0.2);
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
     transition: background 0.6s ease;
     border-radius: inherit;
+    z-index: 1;
   }
 
   h3,
   p {
     position: relative;
-    z-index: 1;
+    z-index: 2;
   }
 
   &:hover {
@@ -183,10 +220,22 @@ section {
   }
 }
 
+.marquee-card img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
 // ─── Project Board ───────────────────────────────────────────────────
 
 .project-board {
-  width: auto;
+  animation: iconRise 0.5s ease forwards;
+  position: relative;
+  width: 90vw;
   height: 100%;
   padding: 2rem;
   mask-image: linear-gradient(to right, black 0%, black 80%, transparent);
@@ -221,10 +270,25 @@ section {
     color: rgba(191, 155, 48, 0.9);
   }
 
+  .photo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40%;
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0 12px 12px 0;
+    }
+  }
+
   .linkcard {
     cursor: pointer;
     text-decoration: none;
-    width: 70%;
+    width: auto;
     height: auto;
     padding: 1rem 1.25rem;
     margin-bottom: 1.25rem;
@@ -275,6 +339,12 @@ section {
 
 // ─── About ───────────────────────────────────────────────────────────
 
+.about-container {
+  width: 100%;
+  height: auto;
+  padding: 2rem;
+  text-align: right;
+}
 #about h2 {
   font-family: 'Raleway', sans-serif;
   font-size: 1.3rem;
@@ -288,6 +358,11 @@ section {
 
 #about p {
   color: white;
+}
+
+.divider {
+  border: none;
+  margin: 1.5rem 0;
 }
 
 // ─── Contact ─────────────────────────────────────────────────────────
@@ -368,5 +443,13 @@ section {
   100% {
     margin-top: 0;
     color: rgba(255, 255, 255, 1);
+  }
+}
+@keyframes iconRise {
+  0% {
+    margin-top: 3rem;
+  }
+  100% {
+    margin-top: 0;
   }
 }

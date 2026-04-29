@@ -5,4 +5,5 @@ export interface Card {
   description: string;
   dated: Date;
   links: Link[];
+  imgPath: string;
 }
