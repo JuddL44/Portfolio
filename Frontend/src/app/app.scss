@@ -181,12 +181,11 @@ section {
   display: flex;
   width: max-content;
   animation: scroll 14s linear infinite;
-  will-change: transform;
-  transform: translateZ(0);
 }
 
 @media (min-width: 768px) {
   .marquee-track {
+    will-change: transform;
     animation: scroll 25s linear infinite;
   }
 }
