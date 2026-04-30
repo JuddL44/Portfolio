@@ -121,23 +121,21 @@
 </section>
 
 <section id="contact">
-  <div class="title-card">Contact Me</div>
-  <div class="contact-grid">
-    <div class="contact-item">
-      <span class="contact-label">Email</span>
-      <span class="contact-value">JuddLasater.Dev@gmail.com</span>
+  <div class="title-card contact {{ clickableContact ? 'clickable' : '' }}" (click)="visitLink()">
+    {{ contact }}
+  </div>
+  <div class="icon-container">
+    <div class="icon enlarged" (mouseenter)="smoothType(email, 50, false)">
+      <img src="icons/mail.png" alt=" " />
     </div>
-    <div class="contact-item">
-      <span class="contact-label">Phone</span>
-      <span class="contact-value">(806) 777-5004</span>
+    <div class="icon enlarged" (mouseenter)="smoothType(phone, 50, false)">
+      <img src="icons/call.png" alt=" " />
     </div>
-    <a href="www.linkedin.com/in/judd-lasater-54a29a38a/" target="_blank" class="contact-item">
-      <span class="contact-label">LinkedIn</span>
-      <span class="contact-value">Judd Lasater</span>
-    </a>
-    <a href="https://github.com/juddl44" target="_blank" class="contact-item">
-      <span class="contact-label">GitHub</span>
-      <span class="contact-value">JuddL44</span>
-    </a>
+    <div class="icon enlarged" (mouseenter)="smoothType(linkedIn, 25, true)">
+      <img src="icons/link.png" alt=" " />
+    </div>
+    <div class="icon enlarged" (mouseenter)="smoothType(github, 50, true)">
+      <img src="icons/github.png" alt=" " />
+    </div>
   </div>
 </section>

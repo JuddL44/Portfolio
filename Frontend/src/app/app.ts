@@ -11,11 +11,16 @@ import { Link } from './models/link';
   styleUrl: './app.scss',
 })
 export class App implements OnInit, OnDestroy {
-  // ─── Branding ────────────────────────────────────────────────────────
+  // ─── Personal ────────────────────────────────────────────────────────
 
   protected readonly title = signal('Judd Lasater');
   header: string = 'Judd Lasater';
   description: string = 'Full-Stack Developer | .NET · Angular · Azure';
+  contact: string = 'Contact Me';
+  email: string = 'JuddLasater.dev@gmail.com';
+  phone: string = '(+1) 806-777-5004';
+  linkedIn: string = 'https://www.linkedin.com/in/judd-lasater-54a29a38a/';
+  github: string = 'https://github.com/JuddL44/';
 
   // ─── Background ──────────────────────────────────────────────────────
 
@@ -172,6 +177,35 @@ export class App implements OnInit, OnDestroy {
   }
 
   // ─── Utilities ───────────────────────────────────────────────────────
+
+  private typeJobId = 0;
+  clickableContact = false;
+  clickLink = 'invalid';
+
+  async smoothType(text: string, interval: number, clickable: boolean) {
+    const jobId = ++this.typeJobId;
+    this.contact = '';
+    this.clickableContact = clickable;
+    if (this.clickableContact) {
+      this.clickLink = text;
+    } else {
+      this.clickLink = 'invalid';
+    }
+    for (const l of text) {
+      if (jobId !== this.typeJobId) return;
+      this.contact += l;
+      await this.sleep(interval);
+    }
+  }
+
+  sleep(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  visitLink() {
+    if (this.clickLink === 'invalid') return;
+    window.open(this.clickLink, '_blank');
+  }
 
   smoothStep(t: number, min: number, max: number) {
     const x = Math.min(Math.max((t - min) / (max - min), 0), 1);

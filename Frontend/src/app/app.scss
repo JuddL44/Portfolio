@@ -43,11 +43,37 @@ section {
 .title-card {
   font-size: clamp(2rem, 5vw, 4rem);
   animation: textRise 1.4s ease forwards;
+  text-align: center;
+  &.contact {
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    font-size: 1.2rem;
+    &.clickable {
+      transition:
+        transform 0.6s ease,
+        color 0.4s ease;
+      cursor: pointer;
+      &:hover {
+        transform: scale(1.1);
+        color: rgba(191, 155, 48, 0.95);
+      }
+    }
+  }
 }
 
 .description-card {
   font-size: clamp(0.9rem, 2vw, 1.5rem);
   animation: textRise 1.8s ease forwards;
+}
+
+@media (min-width: 768px) {
+  .title-card {
+    text-align: left;
+    &.contact {
+      font-size: 3rem;
+    }
+  }
 }
 
 // ─── Icons ─────────────────────────────────────────────────────
@@ -57,17 +83,21 @@ section {
   height: auto;
   margin-top: 40px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 1.25vw;
+  gap: 4vw;
 }
 
 .icon {
-  width: 2vw;
-  height: 2vw;
+  width: 8vw;
+  height: 8vw;
   transition: transform 0.6s ease;
   animation: iconRise 1.7s ease forwards;
+  &.enlarged {
+    width: 14vw;
+    height: 14vw;
+  }
   &:hover {
     transform: scale(1.25);
   }
@@ -80,8 +110,16 @@ section {
 }
 
 @media (min-width: 768px) {
+  .icon {
+    width: 3vw;
+    height: 3vw;
+    &.enlarged {
+      width: 3vw;
+      height: 3vw;
+    }
+  }
   .icon-container {
-    flex-direction: row;
+    gap: 1.25vw;
   }
 }
 
@@ -142,9 +180,15 @@ section {
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: scroll 20s linear infinite;
+  animation: scroll 14s linear infinite;
   will-change: transform;
   transform: translateZ(0);
+}
+
+@media (min-width: 768px) {
+  .marquee-track {
+    animation: scroll 50s linear infinite;
+  }
 }
 
 // ─── Project Cards ───────────────────────────────────────────────────
@@ -346,10 +390,11 @@ section {
   flex-direction: row;
 }
 .about-subcontainer {
-  width: 50%;
+  width: 100%;
   height: 100%;
   padding: 2rem;
-  text-align: left;
+  text-align: center;
+  margin-left: -50%;
 }
 #about h2 {
   font-family: 'Raleway', sans-serif;
@@ -371,63 +416,19 @@ section {
   margin: 1.5rem 0;
 }
 
+@media (min-width: 768px) {
+  .about-subcontainer {
+    text-align: left;
+    width: 50%;
+    margin-left: 0%;
+  }
+}
+
 // ─── Contact ─────────────────────────────────────────────────────────
 
 #contact {
   min-height: auto;
   padding-bottom: 4rem;
-}
-
-.contact-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  gap: 1rem;
-  max-width: 500px;
-}
-
-.contact-item {
-  margin-top: 0.2rem;
-  display: flex;
-  width: fit-content;
-  flex-direction: row;
-  align-items: center;
-  gap: 1.5rem;
-  padding: 1.5rem 2rem;
-  border: 1px solid rgba(191, 155, 48, 0.15);
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.02);
-  text-decoration: none;
-  transition:
-    border-color 0.6s ease,
-    background 0.6s ease;
-
-  .contact-label {
-    font-family: 'Raleway', sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: rgba(191, 155, 48, 0.5);
-    font-weight: bolder;
-    min-width: 80px;
-  }
-
-  .contact-value {
-    font-family: 'Inter', sans-serif;
-    font-size: auto;
-    color: rgba(255, 255, 255, 0.85);
-  }
-
-  &:hover {
-    border-color: rgba(191, 155, 48, 0.5);
-    background: rgba(255, 255, 255, 0.05);
-  }
-}
-
-@media (min-width: 768px) {
-  .contact-grid {
-    flex-direction: row;
-  }
 }
 
 // ─── Animations ──────────────────────────────────────────────────────
