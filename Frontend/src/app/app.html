@@ -51,12 +51,18 @@
       <div class="header">{{ this.focusedCardTitle }}</div>
       <div class="description">{{ this.focusedCardDescription }}</div>
       <div class="date">{{ this.focusedCardTimestamp }}</div>
-      @for (l of this.focusedCardLinks; track $index) {
-        <a href="{{ l.url }}" target="_blank" rel="noopener noreferrer" class="linkcard">
-          <div class="title">{{ l.title }}</div>
-          <div class="link">{{ l.url }}</div>
-        </a>
-      }
+      <div class="linkcard-container">
+        @for (l of this.focusedCardLinks; track $index) {
+          <a href="{{ l.url }}" target="_blank" rel="noopener noreferrer" class="linkcard">
+            <div class="title-container">
+              <div class="title">{{ l.title }}</div>
+            </div>
+            <div class="linkcard-photo">
+              <img src="{{ l.iconPath }}" alt=" " />
+            </div>
+          </a>
+        }
+      </div>
       <div class="photo">
         <img src="{{ this.focusedCardImg }}" alt=" " />
       </div>

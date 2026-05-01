@@ -51,10 +51,12 @@ export class App implements OnInit, OnDestroy {
         {
           title: 'Deployed Front End',
           url: 'https://purple-rock-0b231a60f.1.azurestaticapps.net/',
+          iconPath: 'splash/jf_fe.png',
         },
         {
           title: 'Deployed API (Takes time to boot up)',
           url: 'https://juddfashion-api-bghydwbue2hff8b9.centralus-01.azurewebsites.net/',
+          iconPath: 'splash/jf_api.png',
         },
       ],
     },
@@ -67,10 +69,12 @@ export class App implements OnInit, OnDestroy {
         {
           title: 'Steam Page',
           url: 'https://store.steampowered.com/app/3093880/Cauldrons_Rift/',
+          iconPath: 'splash/cr_steam.png',
         },
         {
           title: 'Demo Trailer',
           url: 'https://www.youtube.com/watch?v=Zk-Stk0703c',
+          iconPath: 'splash/cr_demo.png',
         },
       ],
     },
@@ -84,18 +88,22 @@ export class App implements OnInit, OnDestroy {
         {
           title: 'First Mojang Blog Post',
           url: 'https://tinyurl.com/y7cnf4pk',
+          iconPath: 'splash/rm_bp.png',
         },
         {
           title: 'Youtuber Playing My Map',
           url: 'https://youtu.be/V-CBgxvG86I',
+          iconPath: 'splash/rm_yt.png',
         },
         {
           title: '11,000,000 Subscriber Youtuber Playing My Map',
           url: 'https://youtu.be/7m8J0iC8Vvg',
+          iconPath: 'splash/rm_cs.png',
         },
         {
           title: 'Java Creator Wiki',
           url: 'https://minecraft.wiki/w/Java_Realms_Content_Creator_Program',
+          iconPath: 'splash/rm_wi.png',
         },
       ],
     },
@@ -104,7 +112,13 @@ export class App implements OnInit, OnDestroy {
       description: "You're looking at it, this portfolio was built from scratch using Angular.",
       dated: new Date('2026-04-17'),
       imgPath: 'images/project_portfolio.png',
-      links: [],
+      links: [
+        {
+          title: 'Deployed Domain',
+          url: 'https://JuddLasater.com',
+          iconPath: 'splash/port_img.png',
+        },
+      ],
     },
   ];
 
@@ -136,8 +150,8 @@ export class App implements OnInit, OnDestroy {
   // ─── Project Focus ───────────────────────────────────────────────────
 
   focusProject(card: Card) {
+    this.isCardFocused = false;
     if (card.title === this.focusedCardTitle) {
-      this.isCardFocused = false;
       this.focusedCardTitle = 'empty';
     } else {
       this.focusedCardTitle = card.title;
