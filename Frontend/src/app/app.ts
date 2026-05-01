@@ -1,12 +1,11 @@
 import { Component, signal, HostListener, OnInit, OnDestroy } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { Navbar } from './components/navbar/navbar';
 import { Card } from './models/card';
 import { Link } from './models/link';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Navbar],
+  imports: [Navbar],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
