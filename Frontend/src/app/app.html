@@ -46,7 +46,45 @@
       }
     </div>
   </div>
-  @if (isCardFocused) {
+  @if (isProjectCardFocused) {
+    <div class="project-board">
+      <div class="header">{{ this.focusedCardTitle }}</div>
+      <div class="description">{{ this.focusedCardDescription }}</div>
+      <div class="date">{{ this.focusedCardTimestamp }}</div>
+      <div class="linkcard-container">
+        @for (l of this.focusedCardLinks; track $index) {
+          <a href="{{ l.url }}" target="_blank" rel="noopener noreferrer" class="linkcard">
+            <div class="title-container">
+              <div class="title">{{ l.title }}</div>
+            </div>
+            <div class="linkcard-photo">
+              <img src="{{ l.iconPath }}" alt=" " />
+            </div>
+          </a>
+        }
+      </div>
+      <div class="photo">
+        <img src="{{ this.focusedCardImg }}" alt=" " />
+      </div>
+    </div>
+  }
+</section>
+
+<section id="certificates">
+  <div class="title-card">Certificates</div>
+  <div class="marquee">
+    <div class="marquee-track">
+      @for (p of certs; track $index) {
+        <div class="marquee-card" button (click)="focusCert(p)">
+          <h3>{{ p.title }}</h3>
+          <p>{{ p.description }}</p>
+          <small>{{ timeSince(p.dated) }}</small>
+          <img src="{{ p.imgPath }}" alt=" " />
+        </div>
+      }
+    </div>
+  </div>
+  @if (isCertCardFocused) {
     <div class="project-board">
       <div class="header">{{ this.focusedCardTitle }}</div>
       <div class="description">{{ this.focusedCardDescription }}</div>

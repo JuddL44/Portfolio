@@ -36,7 +36,8 @@ export class App implements OnInit, OnDestroy {
   focusedCardTimestamp: string = '';
   focusedCardImg: string = '';
   focusedCardLinks: Link[] = [];
-  isCardFocused = false;
+  isProjectCardFocused = false;
+  isCertCardFocused = false;
 
   // ─── Projects ────────────────────────────────────────────────────────
 
@@ -74,6 +75,20 @@ export class App implements OnInit, OnDestroy {
           title: 'Demo Trailer',
           url: 'https://www.youtube.com/watch?v=Zk-Stk0703c',
           iconPath: 'splash/cr_demo.png',
+        },
+      ],
+    },
+    {
+      title: 'Chatroom',
+      description:
+        'A real-time chat application built with Angular, ASP.NET Core, and SignalR, following CQRS principles.',
+      dated: new Date('2026-06-03'),
+      imgPath: 'images/project_chatroom.png',
+      links: [
+        {
+          title: 'GitHub Repo',
+          url: 'https://github.com/JuddL44/Chatroom',
+          iconPath: 'splash/cr_ln.png',
         },
       ],
     },
@@ -121,7 +136,63 @@ export class App implements OnInit, OnDestroy {
     },
   ];
 
+  private readonly baseCertificates: Card[] = [
+    {
+      title: 'AZ-900',
+      description: 'Full-stack ecommerce platform with JWT auth and real-time cart management',
+      dated: new Date('2025-09-16'),
+      imgPath: 'images/project_azure.png',
+      links: [
+        {
+          title: 'ID: 6FCD4B45F0D3C692',
+          url: 'https://learn.microsoft.com/api/credentials/share/en-us/JUDDL-8545/6FCD4B45F0D3C692?sharingId=72B5AD70CDCBE5B2',
+          iconPath: 'splash/cert_backsplash.png',
+        },
+      ],
+    },
+    {
+      title: 'Mastering TypeScript',
+      description: 'Full-stack ecommerce platform with JWT auth and real-time cart management',
+      dated: new Date('2026-04-03'),
+      imgPath: 'images/project_ts.png',
+      links: [
+        {
+          title: 'ID: UC-e762ff3f-b4ab-492c-9de7-2fc1d99248fc',
+          url: 'https://www.udemy.com/certificate/UC-e762ff3f-b4ab-492c-9de7-2fc1d99248fc/',
+          iconPath: 'splash/cert_backsplash.png',
+        },
+      ],
+    },
+    {
+      title: 'RESTful Web Api',
+      description: 'Full-stack ecommerce platform with JWT auth and real-time cart management',
+      dated: new Date('2025-09-04'),
+      imgPath: 'images/project_api.png',
+      links: [
+        {
+          title: 'ID: UC-feccb168-53ef-41b2-bc7a-762e495b51c8',
+          url: 'https://www.udemy.com/certificate/UC-feccb168-53ef-41b2-bc7a-762e495b51c8/',
+          iconPath: 'splash/cert_backsplash.png',
+        },
+      ],
+    },
+    {
+      title: 'Complete C# Masterclass',
+      description: 'Full-stack ecommerce platform with JWT auth and real-time cart management',
+      dated: new Date('2025-08-22'),
+      imgPath: 'images/project_csharp.png',
+      links: [
+        {
+          title: 'ID: UC-4c895c5f-58e3-4606-83a6-31ed1cafff37',
+          url: 'https://www.udemy.com/certificate/UC-4c895c5f-58e3-4606-83a6-31ed1cafff37/',
+          iconPath: 'splash/cert_backsplash.png',
+        },
+      ],
+    },
+  ];
+
   projects: Card[] = [];
+  certs: Card[] = [];
 
   // ─── Lifecycle ───────────────────────────────────────────────────────
 
@@ -141,15 +212,17 @@ export class App implements OnInit, OnDestroy {
   private fillMarquee(): void {
     const cardWidth = 350 + 32;
     const maxWidth = Math.max(window.innerWidth, screen.width) * 3;
-    const copies = Math.max(2, Math.ceil(maxWidth / (this.baseProjects.length * cardWidth)));
-
-    this.projects = Array(copies).fill(this.baseProjects).flat();
+    const projectCopies = Math.max(2, Math.ceil(maxWidth / (this.baseProjects.length * cardWidth)));
+    const certCopies = Math.max(2, Math.ceil(maxWidth / (this.baseProjects.length * cardWidth)));
+    this.projects = Array(projectCopies).fill(this.baseProjects).flat();
+    this.certs = Array(certCopies).fill(this.baseCertificates).flat();
   }
 
-  // ─── Project Focus ───────────────────────────────────────────────────
+  // ─── Focus ────────────────────────────────────────────────────────────
 
   focusProject(card: Card) {
-    this.isCardFocused = false;
+    this.isProjectCardFocused = false;
+    this.isCertCardFocused = false;
     if (card.title === this.focusedCardTitle) {
       this.focusedCardTitle = 'empty';
     } else {
@@ -158,7 +231,22 @@ export class App implements OnInit, OnDestroy {
       this.focusedCardTimestamp = this.timeSince(card.dated);
       this.focusedCardLinks = card.links;
       this.focusedCardImg = card.imgPath;
-      this.isCardFocused = true;
+      this.isProjectCardFocused = true;
+    }
+  }
+
+  focusCert(card: Card) {
+    this.isCertCardFocused = false;
+    this.isProjectCardFocused = false;
+    if (card.title === this.focusedCardTitle) {
+      this.focusedCardTitle = 'empty';
+    } else {
+      this.focusedCardTitle = card.title;
+      this.focusedCardDescription = card.description;
+      this.focusedCardTimestamp = this.timeSince(card.dated);
+      this.focusedCardLinks = card.links;
+      this.focusedCardImg = card.imgPath;
+      this.isCertCardFocused = true;
     }
   }
 
