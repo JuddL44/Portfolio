@@ -139,12 +139,12 @@ export class App implements OnInit, OnDestroy {
   private readonly baseCertificates: Card[] = [
     {
       title: 'AZ-900',
-      description: 'Full-stack ecommerce platform with JWT auth and real-time cart management',
+      description: 'ID: 6FCD4B45F0D3C692',
       dated: new Date('2025-09-16'),
       imgPath: 'images/project_azure.png',
       links: [
         {
-          title: 'ID: 6FCD4B45F0D3C692',
+          title: 'View Certificate',
           url: 'https://learn.microsoft.com/api/credentials/share/en-us/JUDDL-8545/6FCD4B45F0D3C692?sharingId=72B5AD70CDCBE5B2',
           iconPath: 'splash/cert_backsplash.png',
         },
@@ -152,12 +152,12 @@ export class App implements OnInit, OnDestroy {
     },
     {
       title: 'Mastering TypeScript',
-      description: 'Full-stack ecommerce platform with JWT auth and real-time cart management',
+      description: 'ID: UC-e762ff3f-b4ab-492c-9de7-2fc1d99248fc',
       dated: new Date('2026-04-03'),
       imgPath: 'images/project_ts.png',
       links: [
         {
-          title: 'ID: UC-e762ff3f-b4ab-492c-9de7-2fc1d99248fc',
+          title: 'View Certificate',
           url: 'https://www.udemy.com/certificate/UC-e762ff3f-b4ab-492c-9de7-2fc1d99248fc/',
           iconPath: 'splash/cert_backsplash.png',
         },
@@ -165,12 +165,12 @@ export class App implements OnInit, OnDestroy {
     },
     {
       title: 'RESTful Web Api',
-      description: 'Full-stack ecommerce platform with JWT auth and real-time cart management',
+      description: 'ID: UC-feccb168-53ef-41b2-bc7a-762e495b51c8',
       dated: new Date('2025-09-04'),
       imgPath: 'images/project_api.png',
       links: [
         {
-          title: 'ID: UC-feccb168-53ef-41b2-bc7a-762e495b51c8',
+          title: 'View Certificate',
           url: 'https://www.udemy.com/certificate/UC-feccb168-53ef-41b2-bc7a-762e495b51c8/',
           iconPath: 'splash/cert_backsplash.png',
         },
@@ -178,12 +178,12 @@ export class App implements OnInit, OnDestroy {
     },
     {
       title: 'Complete C# Masterclass',
-      description: 'Full-stack ecommerce platform with JWT auth and real-time cart management',
+      description: 'ID: UC-4c895c5f-58e3-4606-83a6-31ed1cafff37',
       dated: new Date('2025-08-22'),
       imgPath: 'images/project_csharp.png',
       links: [
         {
-          title: 'ID: UC-4c895c5f-58e3-4606-83a6-31ed1cafff37',
+          title: 'View Certificate',
           url: 'https://www.udemy.com/certificate/UC-4c895c5f-58e3-4606-83a6-31ed1cafff37/',
           iconPath: 'splash/cert_backsplash.png',
         },
