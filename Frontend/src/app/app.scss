@@ -33,6 +33,20 @@ section {
   padding: 6rem clamp(1rem, 4vw, 2rem);
   scroll-margin-top: 100px;
 }
+.video-container {
+  position: relative;
+  width: 50%;
+  aspect-ratio: 16 / 9;
+  margin-top: 3rem;
+}
+
+.video-container iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
 
 // ─── Hero ────────────────────────────────────────────────────────────
 
@@ -459,6 +473,20 @@ section {
   display: flex;
   flex-direction: row;
 }
+
+.about-image {
+  aspect-ratio: 1758 / 3126;
+  transform: scale(0.5) translateY(-40%);
+  border-radius: 50%;
+  overflow: hidden;
+  width: 55rem;
+  height: 55rem;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
 .about-subcontainer {
   width: 100%;
   height: 100%;
@@ -528,5 +556,12 @@ section {
   }
   100% {
     margin-top: 0;
+  }
+}
+
+@media (max-width: 1200px) {
+  .about-image {
+    transform: scale(0);
+    display: none;
   }
 }
