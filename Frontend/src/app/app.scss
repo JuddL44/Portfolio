@@ -91,6 +91,13 @@ section {
   }
 }
 
+@media (max-width: 768px) {
+  .title-card {
+    &.left {
+      text-align: center;
+    }
+  }
+}
 .description-card {
   font-size: clamp(0.9rem, 2vw, 1.5rem);
   animation: textRise 1.8s ease forwards;
@@ -312,6 +319,17 @@ section {
     a {
       color: inherit;
       text-decoration: none;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 30px;
+  }
+  .preview {
+    img {
+      height: 0%;
     }
   }
 }
