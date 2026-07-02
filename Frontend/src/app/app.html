@@ -1,8 +1,15 @@
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+/>
+
 <app-navbar></app-navbar>
 <div class="luxury-bg bg1" [style.opacity]="bg1Opacity"></div>
 <div class="luxury-bg bg2" [style.opacity]="bg2Opacity"></div>
 <div class="luxury-bg bg3" [style.opacity]="bg3Opacity"></div>
 <div class="luxury-bg bg4" [style.opacity]="bg4Opacity"></div>
+<div class="dot-grid"></div>
 
 <section class="hero">
   <div class="title-card">{{ header }}</div>
@@ -21,9 +28,6 @@
       <img src="icons/bl.png" alt=" " />
     </div>
     <div class="icon">
-      <img src="icons/sql.png" alt=" " />
-    </div>
-    <div class="icon">
       <img src="icons/az.png" alt=" " />
     </div>
     <div class="icon">
@@ -35,80 +39,66 @@
   </div>
 </section>
 
-<section id="projects" class="noBottom">
+<section id="projects">
   <div class="title-card">My Projects</div>
-  <div class="marquee">
-    <div class="marquee-track">
-      @for (p of projects; track $index) {
-        <div class="marquee-card" button (click)="focusProject(p)">
-          <h3>{{ p.title }}</h3>
-          <p>{{ p.description }}</p>
-          <small>{{ timeSince(p.dated) }}</small>
-          <img src="{{ p.imgPath }}" alt=" " />
+  <div class="board">
+    @for (p of projects; track p.title) {
+      <div class="card">
+        <div class="preview">
+          <img src="{{ p.imgPath }}" alt="Preview" />
         </div>
-      }
-    </div>
+        <div class="bar">
+          <div class="title">{{ p.title }}</div>
+          <div class="tags">
+            @for (i of p.icons; track i.title) {
+              <div class="tag">
+                <img src="{{ i.iconPath }}" class="image" style="filter: brightness(0) invert(1)" />
+                {{ i.title }}
+              </div>
+            }
+          </div>
+          <div class="description">
+            {{ p.description }}
+          </div>
+          <div class="underline"></div>
+          <div class="links">
+            @for (l of p.links; track l.title) {
+              <div class="link">
+                <img src="{{ l.iconPath }}" class="image" style="filter: brightness(0) invert(1)" />
+                <a href="{{ l.url }}" target="_blank" rel="noopener noreferrer">
+                  {{ l.title }}
+                </a>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    }
   </div>
-  @if (isProjectCardFocused) {
-    <div class="project-board">
-      <div class="header">{{ this.focusedCardTitle }}</div>
-      <div class="description">{{ this.focusedCardDescription }}</div>
-      <div class="date">{{ this.focusedCardTimestamp }}</div>
-      <div class="linkcard-container">
-        @for (l of this.focusedCardLinks; track $index) {
-          <a href="{{ l.url }}" target="_blank" rel="noopener noreferrer" class="linkcard">
-            <div class="title-container">
-              <div class="title">{{ l.title }}</div>
-            </div>
-            <div class="linkcard-photo">
-              <img src="{{ l.iconPath }}" alt=" " />
-            </div>
-          </a>
-        }
-      </div>
-      <div class="photo">
-        <img src="{{ this.focusedCardImg }}" alt=" " />
-      </div>
-    </div>
-  }
 </section>
 
 <section id="certificates">
   <div class="title-card">Certificates</div>
-  <div class="marquee">
-    <div class="marquee-track">
-      @for (p of certs; track $index) {
-        <div class="marquee-card" button (click)="focusCert(p)">
-          <h3>{{ p.title }}</h3>
-          <p>{{ p.description }}</p>
-          <small>{{ timeSince(p.dated) }}</small>
-          <img src="{{ p.imgPath }}" alt=" " />
+  <div class="board">
+    @for (c of certs; track c.title) {
+      <div class="card certificate">
+        <div class="bar">
+          <div class="title">{{ c.title }}</div>
+          <div class="underline"></div>
+          <div class="links">
+            <div class="link">
+              <img
+                src="https://cdn.jsdelivr.net/npm/lucide-static/icons/external-link.svg"
+                class="image"
+                style="filter: brightness(0) invert(1)"
+              />
+              <a href="{{ c.url }}" target="_blank" rel="noopener noreferrer"> View Credential </a>
+            </div>
+          </div>
         </div>
-      }
-    </div>
+      </div>
+    }
   </div>
-  @if (isCertCardFocused) {
-    <div class="project-board">
-      <div class="header">{{ this.focusedCardTitle }}</div>
-      <div class="description">{{ this.focusedCardDescription }}</div>
-      <div class="date">{{ this.focusedCardTimestamp }}</div>
-      <div class="linkcard-container">
-        @for (l of this.focusedCardLinks; track $index) {
-          <a href="{{ l.url }}" target="_blank" rel="noopener noreferrer" class="linkcard">
-            <div class="title-container">
-              <div class="title">{{ l.title }}</div>
-            </div>
-            <div class="linkcard-photo">
-              <img src="{{ l.iconPath }}" alt=" " />
-            </div>
-          </a>
-        }
-      </div>
-      <div class="photo">
-        <img src="{{ this.focusedCardImg }}" alt=" " />
-      </div>
-    </div>
-  }
 </section>
 
 <section id="about">
@@ -119,14 +109,18 @@
       </div>
     </div>
     <div class="about-subcontainer">
-      <div class="title-card">About Me</div>
+      <div class="title-card left">About Me</div>
       <h2>Software Development</h2>
       <p>
-        Nine years ago, I wrote my first line of code and never looked back. What began as a passion
+        Nine years ago, I wrote my first line of code after being inspired by a book about pixel
+        art.
       </p>
-      <p>for game development evolved into a professional career, earning a place in Mojang</p>
-      <p>Studios' Java Creators Program, where I freelanced developing games and experiences for</p>
-      <p>one of the most recognized platforms in the world.</p>
+      <p>
+        What began as a passion for game development evolved into a professional career, earning a
+        place in Mojang
+      </p>
+      <p>Studios' Java Creators Program, where I freelanced developing experiences for</p>
+      <p>one of the most recognized games in the world.</p>
       <hr class="divider" />
       <p>
         Two years ago I took that foundation and built something entirely on my own, 'Cauldron's
@@ -134,8 +128,8 @@
       </p>
       <p>a game I developed independently and successfully shipped to Steam. That experience</p>
       <p>
-        sharpened every skill I had: architecture, problem solving, shipping real products in a real
-        environment.
+        sharpened every skill I had: architecture, problem solving, and shipping real products for
+        consumers.
       </p>
       <hr class="divider" />
       <p>
@@ -144,29 +138,22 @@
       <p>
         building clean, scalable, and maintainable solutions, with additional expertise in Blazor.
       </p>
-      <p>I don't just write code that works. I write code that lasts.</p>
+      <p>I don't just write code that works. I write code thats scalable, and lasts.</p>
       <h2>Open To</h2>
       <p>
         I'm open to all opportunities, freelance contracts, full-time roles, and collaborative
         projects alike.
       </p>
       <p>Whether it's a startup that needs a product built from the ground up, or an</p>
-      <p>established team looking for a focused .NET and</p>
-      <p>Angular developer, I'm interested in the</p>
-      <p>conversation.</p>
+      <p>established team looking for a focused .NET and Angular developer,</p>
+      <p>I'm interested in the conversation.</p>
       <hr class="divider" />
       <p>I bring the same level of commitment to every project, regardless of size or scope.</p>
       <h2>Beyond Code</h2>
       <p>Outside of professional development, I'm currently leading</p>
-      <p>a large-scale Minecraft project alongside eight other leads,</p>
-      <p>each managing our own teams and responsibilities to</p>
-      <p>bring an ambitious minigame to life.</p>
-      <p>It's as much about coordination and</p>
-      <p>leadership as it is about the creation itself.</p>
-      <hr class="divider" />
-      <p>When I'm not building something, I'm spending time with</p>
-      <p>my family. I've also recently developed an interest in cooking, and it's only a matter</p>
-      <p>of time before that becomes another thing I go too deep on.</p>
+      <p>a large-scale project for Minecraft Realms alongside eight other leads,</p>
+      <p>each managing our own teams and responsibilities to bring this project to life.</p>
+      <p>It's as much about coordination and leadership as it is about the creation itself.</p>
     </div>
   </div>
 </section>
@@ -175,18 +162,20 @@
   <div class="title-card contact {{ clickableContact ? 'clickable' : '' }}" (click)="visitLink()">
     {{ contact }}
   </div>
-  <div class="icon-container">
-    <div class="icon enlarged" (mouseenter)="smoothType(email, 50, false)">
-      <img src="icons/mail.png" alt=" " />
-    </div>
-    <div class="icon enlarged" (mouseenter)="smoothType(phone, 50, false)">
-      <img src="icons/call.png" alt=" " />
-    </div>
-    <div class="icon enlarged" (mouseenter)="smoothType(linkedIn, 25, true)">
-      <img src="icons/link.png" alt=" " />
-    </div>
-    <div class="icon enlarged" (mouseenter)="smoothType(github, 50, true)">
-      <img src="icons/github.png" alt=" " />
+  <div class="icon-fill">
+    <div class="icon-container">
+      <div class="icon enlarged" (mouseenter)="smoothType(email, 50, false)">
+        <img src="icons/mail.png" alt=" " />
+      </div>
+      <div class="icon enlarged" (mouseenter)="smoothType(phone, 50, false)">
+        <img src="icons/call.png" alt=" " />
+      </div>
+      <div class="icon enlarged" (mouseenter)="smoothType(linkedIn, 25, true)">
+        <img src="icons/link.png" alt=" " />
+      </div>
+      <div class="icon enlarged" (mouseenter)="smoothType(github, 50, true)">
+        <img src="icons/github.png" alt=" " />
+      </div>
     </div>
   </div>
 </section>
